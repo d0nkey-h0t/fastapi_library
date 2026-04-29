@@ -1,10 +1,10 @@
-import uvicorn
-from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
+import uvicorn
+from fastapi import FastAPI
+
+from database import Model, engine
 from routers.books import books_router
-from database import engine, Model
-from models.books import BookModel
 
 
 @asynccontextmanager
@@ -27,9 +27,9 @@ app = FastAPI(
     lifespan=lifespan,
     title="Library Manager API",
     description="Учебное приложение для курса по FastAPI",
-    version="1.0.0"
+    version="1.0.0",
 )
 app.include_router(books_router)
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="127.0.0.1", port=8080, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8080, reload=True)

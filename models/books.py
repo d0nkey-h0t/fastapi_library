@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
+
 from database import Model
+
 
 class BookModel(Model):
     __tablename__ = "books"

@@ -8,7 +8,8 @@ class SBookAdd(BaseModel):
     pages: int = Field(..., ge=10)
     is_read: bool = Field(default=False)
 
-class SBook (SBookAdd):
+
+class SBook(SBookAdd):
     id: int
 
     # 2. Включаем поддержку ORM

@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from sqlalchemy import select, update, delete
+from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
@@ -40,19 +40,27 @@ class BookRepository:
     async def get_one(cls, book_id: int, session: AsyncSession) -> type[BookModel]:
         book = await session.get(BookModel, book_id)
         if not book:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND)
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND
+            )
 
         # 3. Возвращаем объект
         return book
 
     @classmethod
-    async def update_one(cls, book_id: int, data: SBookAdd, session: AsyncSession) -> type[BookModel] | None:
+    async def update_one(
+        cls, book_id: int, data: SBookAdd, session: AsyncSession
+    ) -> type[BookModel] | None:
         book = await session.get(BookModel, book_id)
         if not book:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND)
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND
+            )
 
         # 1. Готовим запрос
-        query = update(BookModel).where(BookModel.id == book_id).values(**data.model_dump())
+        query = (
+            update(BookModel).where(BookModel.id == book_id).values(**data.model_dump())
+        )
 
         # 2. Выполняем
         await session.execute(query)
@@ -65,7 +73,9 @@ class BookRepository:
     async def delete_one(cls, book_id: int, session: AsyncSession):
         book = await session.get(BookModel, book_id)
         if not book:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND)
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail=MSG_NOT_FOUND
+            )
 
         # 1. Готовим запрос
         query = delete(BookModel).where(BookModel.id == book_id)

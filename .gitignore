@@ -1,0 +1,87 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pyre/
+.mypy_cache/
+.dmypy.json
+.dmypy/
+.ruff_cache/
+
+# === Virtual Environments ===
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# === Poetry ===
+# Poetry создает виртуальные окружения вне проекта по умолчанию,
+# но если вы используете `poetry config virtualenvs.in-project true`, то:
+.pypoetry/
+poetry.toml
+
+# === FastAPI / Uvicorn ===
+uvicorn.log
+*.log
+logs/
+log/
+
+# === SQLite Database ===
+# Удаляем файл БД, чтобы не коммитить данные
+library.db
+*.db
+*.sqlite3
+
+# === PyCharm / IntelliJ IDEA ===
+# Игнорируем все файлы конфигурации PyCharm
+.idea/
+# Если нужно сохранить некоторые настройки (например, код-стиль), можно удалить это правило
+# и добавить исключения, например:
+# !.idea/codeStyles/
+
+# === VS Code ===
+.vscode/
+*.code-workspace
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints
+
+# === Environment variables ===
+.env
+.env.local
+.env.development
+.env.production
+
+# === OS generated files ===
+.DS_Store
+Thumbs.db
+
+# === Testing ===
+.pytest/
+test-results/
